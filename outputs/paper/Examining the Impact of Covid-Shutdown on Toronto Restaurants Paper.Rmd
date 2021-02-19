@@ -5,6 +5,7 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: ""
 output: 
   bookdown::pdf_document2:
+    latex_engine: xelatex
     toc: FALSE
 bibliography: references.bib
 ---
@@ -44,16 +45,12 @@ We are going to implement our intervention in Ontario. Based on [@citeLit7], we 
 We first extract a list of 32499 restaurants operating in the Ontario area from Yelp API as the frame, and then apply the stratified sampling method to divide the restaurants into different subgroups(strata) based on common attributes: price, rating, location and the number of reviews into different subgroups and the collection of all strata could fully represent the population which in our case is the restaurant business in the Ontario area. Then we implement the simple random sampling strategy to select an equal number of sample restaurants from each of the subgroups. Based on [@Samplesize], we used the equation below to calculate the sample size.
 
 \begin{equation}
-n= \frac{\frac{Z^2 \bullet p(1-p)}{e^2}}{1+(\frac{Z^2\bullet p(1-p)}{e^2N})} (\#eq:sampleSize)
+n= \frac{\frac{Z^2 \times p(1-p)}{e^2}}{1+(\frac{Z^2\times p(1-p)}{e^2N})} (\#eq:sampleSize)
 \end{equation}
 
-Where $$Z$$ is the z score;
-      $$e$$ is the margin of error;
-      $$N$$ is the population size;
-      $$p$$ is the population proportion;
-      $$n$$ is the sample size
+Where $$Z$$ is the z score;$$e$$ is the margin of error;$$N$$ is the population size;$$p$$ is the population proportion;$$n$$ is the sample size
 
-To carry out this calculation, we set the margin of error, $$e$$, the maximum distance desired for the sample estimated to deviate from the true value, to be 5%. The confidence level, which is a measure of certainty regarding how accurately a sample reflects the population, is set to be 0.95. $$Z$$ for a 95% confidence level is 1.96. The population proportion, denoted by $$p$$, is set to be 0.5, describing a percentage value associated with a population. Thus, the sample size is calculated as 380, which means 380 or more restaurants are needed to have a confidence level of 95% that the real value is within $$\pm$$5% of the surveyed value. These 380 restaurants will be the target of our intervention and survey.
+To carry out this calculation, we set the margin of error, e, the maximum distance desired for the sample estimated to deviate from the true value, to be 5%. The confidence level, which is a measure of certainty regarding how accurately a sample reflects the population, is set to be 0.95. Z for a 95% confidence level is 1.96. The population proportion, denoted by p, is set to be 0.5, describing a percentage value associated with a population. Thus, the sample size is calculated as 380, which means 380 or more restaurants are needed to have a confidence level of 95% that the real value is within 5% difference of the surveyed value. These 380 restaurants will be the target of our intervention and survey.
 
 The stratified sampling technique helps to generate a more equal representation of characteristics in the sample group since we classify their features before distributing them directly into control and intervention groups, and also to maintain a lower sampling error in estimation, as well as a lower standard deviation. Therefore, any variations of outcomes between the control and treatment groups could be considered by the intervention only.
 The next step of this study is to find two months in the year where restaurants are historically proven to have similar performances and then separating the control group and the treatment in our intervention. This will allow us to measure their usual performance and avoid counterfeit counterfactual mistakes.
